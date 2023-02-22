@@ -1,1 +1,0 @@
-print(f"Hello There. Take what you need, Leave what you don't")
