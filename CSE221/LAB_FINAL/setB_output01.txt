@@ -1,0 +1,10 @@
+Adjacency List:
+1 : 4
+2 : 4
+3 : 1 2
+4 : 
+5 : 
+Before adding rule:
+3 5 1 2 4
+After adding rule:
+3 5 1 4 2

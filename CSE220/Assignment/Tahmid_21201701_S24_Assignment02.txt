@@ -1,0 +1,44 @@
+user=input("Enter the first row: ")
+userin02=input("Enter the second row: ")
+if len(user)>10 or len(userin02)>10:
+    print('invalid size input')
+else:
+    start01=0
+    start02=0
+    arr=[[0]*10,[0]*10]
+    for i in range(len(user)):
+        arr[0][i]=user[i]
+        if ord(user[i])>=65 and ord(user[i])<=90:
+            start01=i
+    for j in range(len(userin02)):
+        arr[1][j]=userin02[j]
+        if ord(userin02[j])>=65 and ord(userin02[j])<=90:
+            start02=j
+    print(f"Start index for first row  {start01} Start character: {user[start01]}")
+    print(f"Start index for second row {start02} Start character:  {userin02[start01]}")
+
+    print(arr)
+    count=0
+    while True:
+        userin=input('Enter a word:-')
+        if userin=='Q' or userin=='q':
+            break
+        else:
+            row01=(start01+len(user)-count)%len(user)
+            row02=(start02+len(userin02)-count)%len(userin02)
+
+            for i in range(len(user)):
+                print(arr[0][row01], end=' ')
+                row01=(row01-1)%len(user)
+
+            print()
+
+            for j in range(len(userin02)):
+                print(arr[1][row02], end=' ')
+                row02=(row02+1)%len(userin02)
+             
+            print()
+
+            count+=1
+                # giRtfel2th Rtfel2th
+    # rightLeft2

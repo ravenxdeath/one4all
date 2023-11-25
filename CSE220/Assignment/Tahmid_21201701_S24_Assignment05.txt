@@ -1,0 +1,139 @@
+#ID: 21201701
+
+#TASK 1 ARRAY BASED Stack
+
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+        else:
+            return None
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+def check_expression(expression):
+    stack = Stack()
+    error = False
+    error_message = ""
+    open_chars = ["(", "{", "["]
+    close_chars = [")", "}", "]"]
+
+    for i, char in enumerate(expression):
+        if char in open_chars:
+            stack.push(char)
+
+        elif char in close_chars:
+
+            if stack.is_empty():
+                error = True
+                error_message = f"Error at character #{i+1}. '{char}'- not opened."
+                break
+
+
+            else:
+                open_char = stack.pop()
+                if open_chars.index(open_char) != close_chars.index(char):
+                    error = True
+                    error_message = f"Error at character #{i}. {open_char}- not closed."
+                    break
+
+    if error:
+        print(expression)
+        print("This expression is NOT correct.")
+        print(error_message)
+        print(f"\n")
+    else:
+        print(expression)
+        print("This expression is correct.")
+        print(f"\n")
+
+# given expressions
+
+# check_expression("1+2*(3/4)")
+# check_expression("1+2*[3*3+{4-5(6(7/8/9)+10)-11+(12*8)]+14")
+check_expression("1+2*[3*3+{4-5(6(7/8/9)+10)}-11+(12*8)/{13+13}]+14")
+check_expression("1+2]*[3*3+{4-5(6(7/8/9)+10)-11+(12*8)]+14")
+
+
+# TASK 2 LINKED LIST BASED STACK 
+
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+ 
+class Stack:
+    def __init__(self):
+        self.top = None
+        self.size = 0
+ 
+    def push(self, data):
+        node = Node(data)
+        if not self.top:
+            self.top = node
+        else:
+            node.next = self.top
+            self.top = node
+        self.size += 1
+ 
+    def pop(self):
+        if not self.top:
+            return None
+        data = self.top.data
+        self.top = self.top.next
+        self.size -= 1
+        return data
+ 
+    def peek(self):
+        if not self.top:
+            return None
+        return self.top.data
+ 
+    def is_empty(self):
+        return not bool(self.top)
+ 
+def check_expression(expression):
+    stack = Stack()
+    error_pos = -1
+    for i, char in enumerate(expression):
+
+        if char in ["(", "[", "{"]:
+            stack.push((char, i))
+            
+        elif char in [")", "]", "}"]:
+            if stack.is_empty():
+                error_pos = i
+                break
+            open_char, open_pos = stack.pop()
+
+            if (open_char == "(" and char != ")") or \
+               (open_char == "[" and char != "]") or \
+               (open_char == "{" and char != "}"):
+                error_pos = open_pos
+                break
+ 
+    if error_pos == -1:
+        print(expression)
+        print("This expression is correct.")
+        print(f"\n")
+        
+    else:
+        print(expression)
+        print("This expression is NOT correct.")
+        print(f"Error at character #{error_pos+1}. '{expression[error_pos]}' - not closed.")
+        print(f"\n")
+
+
+# given expressions
+
+check_expression("1+2*(3/4)")
+check_expression("1+2*[3*3+{4-5(6(7/8/9)+10)-11+(12*8)]+14")
+check_expression("1+2*[3*3+{4-5(6(7/8/9)+10)}-11+(12*8)/{13+13}]+14")
+# check_expression("1+2]*[3*3+{4-5(6(7/8/9)+10)-11+(12*8)]+14")

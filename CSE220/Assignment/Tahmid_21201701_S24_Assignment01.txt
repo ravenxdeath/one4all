@@ -1,0 +1,201 @@
+# Test 01: Shift Left k cell
+
+def shift_left(source, k):
+  # TO DO
+  # Hint, You can write a function for left shift once and then use it
+    for i in range(k):
+        source[i] = source[i+k]
+        source[k+i] = 0
+      
+    return source
+  
+
+print("///  Test 01: Shift Left k cell  ///")
+source = [10,20,30,40,50,60]
+returned_value = shift_left(source, 3) # This should return [40, 50, 60, 0, 0, 0]
+print(returned_value)
+
+# Test 02: Rotate Left k cell
+def rotate_left(source, k):
+  # TO DO
+  # Hint, You can write a function for left rotate once and then use it
+    for i in range(k):
+        source[i], source[i+k] = source[i+k], source[i]
+    return source
+
+print("///  Test 02: Rotate Left k cell  ///")
+source = [10,20,30,40,50,60]
+returned_value = rotate_left(source, 3) # This should return [40, 50, 60, 10, 20, 30]
+print(returned_value)
+# unittest.output_test(returned_value, [40, 50, 60, 10, 20, 30])
+
+
+# Test 03: Shift Right k cell
+def shift_right(source, k):
+  # TO DO
+  # Hint, You can write a function for right shift once and then use it
+  for i in range(k):
+      source[i+k] = source[i]
+      source[i]=0
+      
+  return source
+
+print("///  Test 03: Shift Right k cell  ///")
+source = [10,20,30,40,50,60]
+returned_value = shift_right(source, 3) # This should return [0, 0, 0, 10, 20, 30]
+print(returned_value)
+# unittest.output_test(returned_value, [0, 0, 0, 10, 20, 30])
+
+
+# Test 04: Rotate Right k cell
+def rotate_right(source, k):
+  # TO DO
+  # Hint, You can write a function for right rotate once and then use it
+  for i in range(k):
+      source[i], source[i+k] = source[i+k], source[i]
+  return source
+
+print("///  Test 04: Rotate Right k cell  ///")
+source = [10,20,30,40,50,60]
+returned_value = rotate_right(source, 3) # This should return [40, 50, 60, 10, 20, 30]
+# unittest.output_test(returned_value, [40, 50, 60, 10, 20, 30])
+print(returned_value)
+
+# Test 05: Remove an element from an array
+# TO DO
+
+def remove(source, idx):
+  # size = len(source)
+  for i in range(idx, len(source)-1):
+    source[i] = source[i+1]
+  return source 
+
+print("///  Test 05: Remove an element from an array  ///")
+source = [10,20,30,40,50,0,0]
+returned_value = remove(source, 2) # This should return [10, 20, 40, 50, 0, 0, 0]
+# unittest.output_test(returned_value, [10, 20, 40, 50, 0, 0, 0])
+print(returned_value)
+
+
+# Test 06: Remove all occurrences of a particular element from an array
+
+from array import *
+
+
+
+def remove_all(source, element):
+  # TO DO
+    arr1 = array("i", [0]*len(source))
+    print(arr1)
+    print("I've used the array modules to create an array")
+    idx = 0
+    for i in range(0, len(source)-1):
+            if source[i] == element:
+                continue
+            arr1[idx] = source[i]
+            idx += 1
+            
+    return arr1 
+
+
+print("///  Test 06: Remove all occurrences of a particular element from an array  ///")
+source = [10,2,30,2,50,2,2,0,0]
+returned_value = remove_all(source, 2) # This should return [10, 30, 50, 0, 0, 0, 0, 0, 0]
+print(returned_value)
+
+
+
+# Test 07: Splitting an Array
+
+def split_array(source):
+    source_len = len(source)
+    i = source_len - 2
+    left1, right1 = 0, 0
+    left2, right2 = 0, 0
+
+    for k in range(i):
+        left1 += source[k]
+    
+    for k in range(i, source_len):
+        right1 += source[k]
+    
+    for k in range(i-1):
+        left2 += source[k]
+    
+    for k in range(i-1, source_len):
+        right2 += source[k]
+
+    return (left1 == right1) or (left2 == right2)
+
+
+print("///  Test 07: Splitting an Array  ///")
+test_1 = [1, 1, 1, 2, 1] # Here splitting is possible as summation of [1, 1, 1] = summation of [2,1]
+returned_value = split_array(test_1) # This should return True
+print(returned_value)
+
+test_2 = [2, 1, 1, 2, 1] # Here splitting is not possible
+returned_value = split_array(test_2) # This should return False
+print(returned_value)
+
+test_3 = [10, 3, 1, 2, 10] # Here splitting is possible as summation of [10, 3] = summation of [1,2,10]
+returned_value = split_array(test_3) # This should return True
+print(returned_value)
+
+
+# Test 08: Max Bunch Count
+
+def max_bunch(source):
+    source_len = len(source)
+    largest = 0
+    counter = 0
+
+    for i in range(1, source_len):
+        if source[i] == source[i-1]:
+            counter += 1
+        else:
+            counter = 1
+        
+        if counter > largest:
+                largest = counter
+    
+    return largest
+
+print("///  Test 08: Max Bunch Count  ///")
+returned_value = max_bunch([1, 2, 2, 3, 4, 4, 4]) # This should return 3
+print(returned_value)
+returned_value = max_bunch([1, 1, 2, 2, 1, 1, 1, 1]) # This should return 4
+print(returned_value)
+
+
+#! Part 2
+
+
+def mean_cal(source):
+    return sum(source) / len(source)
+
+source=[10, 8, 13, 9, 14, 25, -5, 20, 7, 7, 4]
+mean_cal(source)
+
+
+def standardDev(source):
+    mean = mean_cal(source)
+    x = 0
+    for i in range(len(source)):
+       x += (mean - source[i])**2
+    standard_deviation = (x/(len(source)-1))**0.5
+
+    return standard_deviation
+source=[10, 8, 13, 9, 14, 25, -5, 20, 7, 7, 4]
+standardDev(source)
+
+
+def source_ls(source):
+    ls = []
+    sd = standardDev(source)
+    mean = mean_cal(source)
+    for i in source:
+        if abs(i-mean) >= (1.5*sd):
+            ls += [i]
+    return ls
+source = [10, 8, 13, 9, 14, 25, -5, 20, 7, 7, 4]
+print(source_ls(source))

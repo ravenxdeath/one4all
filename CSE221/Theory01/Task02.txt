@@ -1,0 +1,60 @@
+Given psuedoCode:
+function binaray_search(A,n,T) is 
+    L := 0
+    R := n-1
+    while L<= R do 
+        m := floor((L+R)/2)
+        if A[m] < T Then
+            L := m+1
+        else A[m] < T then
+            R := m-1
+            
+        else 
+            return m 
+    retur unsuccessful
+    
+    
+here A denotes the list and n denotes its size. 
+
+#Task 02
+No, the given algorithm Won't be able to find the search value T=2 for the list.
+
+Let's go through the steps of the algorithm:
+
+Step 1:
+L = 0, R = 7 (n-1)
+m = floor((L + R) / 2) = floor((0 + 7) / 2) = floor(7 / 2) = 3
+
+Step 2:
+A[3] = 3 < T (2), so we update L = m + 1 = 3 + 1 = 4
+
+Step 3:
+L = 4, R = 7
+m = floor((L + R) / 2) = floor((4 + 7) / 2) = floor(11 / 2) = 5
+
+Step 4:
+A[5] = 11 > T (2), so we update R = m - 1 = 5 - 1 = 4
+
+Step 5:
+L = 4, R = 4
+m = floor((L + R) / 2) = floor((4 + 4) / 2) = floor(8 / 2) = 4
+
+Step 6:
+A[4] = 7 > T (2), so we update R = m - 1 = 4 - 1 = 3
+
+Step 7:
+L = 4, R = 3
+Since L > R, the while loop terminates.
+
+The algorithm did not find T=2 in the list. The reason for this is that the list is not sorted 
+in ascending order, which is a requirement for binary search to work correctly. 
+In the given list, the values are not arranged in a sorted order.
+
+In the given list [23, 2, 19, 3, 7, 11, 5, 13], the elements are not arranged in ascending order. 
+The presence of unsorted elements disrupts the assumptions binary search makes about the 
+ordering of the list. As a result, the algorithm cannot accurately determine whether to search 
+in the lower or upper half of the current range.
+
+To use binary search effectively, the list should be sorted in ascending order beforehand. 
+Once the list is sorted, binary search can efficiently locate the desired value by halving 
+the search space at each step.

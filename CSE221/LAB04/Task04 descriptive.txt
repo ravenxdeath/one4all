@@ -1,0 +1,99 @@
+Brainstorming: [No need to submit the following questions]
+a) Suppose that you have an undirected and unweighted graph,
+can you find out if the given graph is a tree or not?
+b) Suppose that you have an undirected and unweighted graph.
+Can you find out if the graph contains an Odd length Cycle?
+An odd length cycle means the cycle will contain odd
+numbers of vertices.
+
+
+a) To determine if an undirected and unweighted graph is a tree, we can perform a simple check. For a graph to be a tree, it must satisfy two conditions:
+1. It should have exactly n-1 edges, where n is the number of vertices (nodes).
+2. It must not contain any cycles.
+
+If both conditions are met, then the graph is a tree. Otherwise, it is not.
+
+Here's the Python code to check if the given undirected and unweighted graph is a tree:
+
+```python
+def is_tree(graph, n):
+    # Condition 1: Check if the graph has n-1 edges
+    edges_count = sum(len(adj_list) for adj_list in graph.values()) // 2
+    if edges_count != n - 1:
+        return False
+
+    # Condition 2: Check for cycles using Depth-First Search (DFS)
+    visited = [False] * (n + 1)
+    stack = [(1, -1)]  # (vertex, parent)
+    visited[1] = True
+
+    while stack:
+        current, parent = stack.pop()
+
+        for neighbor in graph[current]:
+            if not visited[neighbor]:
+                stack.append((neighbor, current))
+                visited[neighbor] = True
+            elif neighbor != parent:
+                # If we find a neighbor that is visited and not the parent, it forms a cycle.
+                return False
+
+    return True
+
+
+# Example usage:
+graph = {
+    1: [2, 3],
+    2: [1, 4],
+    3: [1],
+    4: [2, 5],
+    5: [4]
+}
+n = 5  # Number of vertices
+
+print(is_tree(graph, n))  # Output: True
+```
+
+b) To find out if the undirected and unweighted graph contains an odd-length cycle, we can again use Depth-First Search (DFS) to traverse the graph and check for cycles. If we encounter a cycle of odd length, we can conclude that the graph contains an odd-length cycle.
+
+Here's the Python code to check if the graph contains an odd-length cycle:
+
+```python
+def has_odd_length_cycle(graph, n):
+    visited = [False] * (n + 1)
+
+    for vertex in range(1, n + 1):
+        if not visited[vertex]:
+            if dfs_cycle_check(graph, vertex, visited, -1, 0):
+                return True
+
+    return False
+
+
+def dfs_cycle_check(graph, current, visited, parent, cycle_length):
+    visited[current] = True
+
+    for neighbor in graph[current]:
+        if not visited[neighbor]:
+            if dfs_cycle_check(graph, neighbor, visited, current, cycle_length + 1):
+                return True
+        elif neighbor != parent and cycle_length % 2 == 0:
+            return True
+
+    return False
+
+
+# Example usage:
+graph = {
+    1: [2, 3],
+    2: [1, 4],
+    3: [1],
+    4: [2, 5],
+    5: [4]
+}
+n = 5  # Number of vertices
+
+print(has_odd_length_cycle(graph, n))  # Output: False
+```
+
+In the example provided, the graph does not contain an odd-length cycle.

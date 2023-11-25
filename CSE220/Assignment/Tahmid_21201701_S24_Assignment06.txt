@@ -1,0 +1,196 @@
+#Task 1.a
+def fact(n):
+    if n== 0 or n== 1:
+        return 1
+    else:
+        return n * fact(n-1)
+    
+fact(5)
+
+#Task 1.b
+
+def fib(n):
+    if n == 0 or n == 1:
+        return n
+    else:
+        return fib(n-1)+fib(n-2)
+    
+fib(10)
+
+#Task 1.c
+
+def arr_recur(arr, i=0):
+    # Base case when index == len(arr)
+    if i == len(arr):
+        return
+
+    print(arr[i])
+    arr_recur(arr, i+1)
+
+arr = [2,3,5,7,11,13]
+arr_recur(arr)
+
+#Task 1.d
+
+def powerN(base, n):
+    
+    if n == 0:
+        return 1
+    else:
+        return (base * powerN(base, n-1))
+
+powerN(3,3)
+        
+
+#Task 2.a
+
+def DecimalToBinary(num):
+	
+	if num >= 1:
+		DecimalToBinary(num // 2)
+	print(num % 2, end="")
+
+dec_val = 24
+DecimalToBinary(dec_val)
+
+
+#Task 2.b
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+        
+def sumLinkedList(head):
+    if not head:
+        return 0
+    else:
+        return head.val + sumLinkedList(head.next)
+
+head = Node(1)
+head.next = Node(2)
+head.next.next = Node(3)
+head.next.next.next = Node(4)
+head.next.next.next.next = Node(5)
+
+# print(sumLinkedList)
+print(sumLinkedList(head)) # Output: 15
+
+
+#Task 2.c
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+def printReverse(head):
+    if not head:
+        return
+    else:
+        printReverse(head.next)
+        print(head.val)
+        
+head = Node(10)
+head.next = Node(20)
+head.next.next = Node(30)
+head.next.next.next = Node(40)
+# Linked list now 10->20->30->40 everse: 40 30 20 10 
+printReverse(head) 
+
+##EVALUATION
+
+def flattenList(given_list, output_list):
+    if not given_list:
+        return output_list
+    
+    val, *args = given_list
+    if type(val) == list:
+        output_list = flattenList(val, output_list)
+        output_list = flattenList(args, output_list)
+    else:
+        output_list.append(val)
+        output_list = flattenList(args, output_list)
+    
+    return output_list
+
+given_list = [1, [2, [3, [4], 5], 6], 7, 8, [9, [[10, 11], 12], 13], 14, [15, [16, [17]]]]
+output_list = flattenList(given_list, [])
+print(output_list) 
+
+#Task 3
+
+def hocBuilder(height):
+  if height==0:
+    return 0
+  elif height==1:
+    return 8
+  else:
+    return 5+ hocBuilder(height-1)
+
+crd = hocBuilder(3)
+print(crd)
+
+
+
+#Task 4.a
+
+def loop(n):
+    for j in range(1, n+1):
+        print(j, end=" ")
+    print()
+
+def patt(num):
+    if num == 0:
+        return
+    patt(num-1)
+    loop(num)
+
+n = int(input("Enter a number: "))
+patt(n)
+
+
+#Task 4.b
+
+def loop(n, spaces):
+    print(" " * spaces, end="")
+    for j in range(1, n+1):
+        print(j, end="")
+    print()
+
+def patt(num, spaces):
+    if num == 0:
+        return
+    patt(num-1, spaces+1)
+    loop(num, spaces)
+
+n = int(input("Sample input: "))
+patt(n, 0)
+
+
+#Task 5
+
+
+class FinalQ:
+    def print(self, array, idx=0):
+        if idx == len(array):
+            return
+        
+        invest = array[idx]
+        profit = self.calcProfit(invest)
+
+        print(str(idx+1) + ". Investment: " + str(invest) + "; Profit: " + str(profit))
+
+        self.print(array, idx+1)
+
+    def calcProfit(self, invest):
+        if invest <= 100000:
+            return (invest - 25000) * 0.045
+            
+        else:
+            return (75000 * 0.045) + ((invest - 100000) * 0.08)
+        
+#Tester 
+array = [25000, 100000, 250000, 350000] 
+f = FinalQ() 
+f.print(array)

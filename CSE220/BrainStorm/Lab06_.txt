@@ -1,0 +1,189 @@
+Name: Nijaf Md. Ahanaf Rivan
+Id: 21301339
+
+################## 1a
+
+def factorial(n):
+  if n==0:
+    return 1
+  else:
+    return n * factorial(n-1)
+
+p = factorial(1)
+print(p)
+
+############## 1b
+
+def fibonacci(n):
+
+    if n == 0 :
+        return 0
+    elif n == 1 :
+        return 1
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+p = fibonacci(9)
+print(p)
+
+############## 1c
+def print_elm(arr,i=0):
+  if i==len(arr):
+    return
+  
+  else:
+    if i == len(arr)-1:
+      print(arr[i])
+    else:
+      print(arr[i],end=",")
+    return print_elm(arr,i+1)
+
+
+arr=[10,20,30,40,50,60]
+print_elm(arr)
+
+
+############## 1d
+def exp(n,power):
+  if power==0:
+    return 1
+  else:
+    return n*exp(n,power-1)
+
+print(exp(3,0))
+
+##########3#2a
+
+def binaryconv(n):
+  if n == 0:
+    return 0
+  else:
+    return (n % 2) + 10 * binaryconv(int(n//2))
+
+
+binaryconv(0)
+
+#########2b
+
+class Node:
+  def __init__(self,e,n):
+    self.element=e
+    self.next=n
+
+  
+class LinkedList:
+  def __init__(self, a):
+    if type(a)==list:
+      self.head = Node(a[0],None)
+      tail = self.head
+      for index in range(1,len(a)):
+        new = Node(a[index],None)
+        tail.next=new
+        tail = new
+
+    else:
+      self.head = a
+
+a1 = [10, 20, 30, 40]
+h1 = LinkedList(a1)
+
+def addsn(h):
+  if h.next == None :
+    return h.element
+  else:
+    return h.element + addsn(h.next)
+
+ad = addsn(h1.head)
+print(ad)
+
+############ 2c
+
+def rev(h):
+  if h == None:
+    return
+  else:
+    rev(h.next)
+    print(h.element, end =" ")
+
+rev(h1.head)
+
+############ 3
+def hocBuilder(height):
+  if height==0:
+    return 0
+  elif height==1:
+    return 8
+  else:
+    return 5+ hocBuilder(height-1)
+
+crd = hocBuilder(3)
+print(crd)
+
+######### 4a
+
+def loop(n):
+  if n==0:
+    return 0
+  else: 
+    loop(n-1)
+    print(n,end=' ')
+def patt(num):
+  if num==0:
+    return
+  patt(num-1)
+  loop(num)
+  print()
+
+patt(5) 
+
+########### 4b
+
+def spc(n):
+  if n == 0:
+    return 0
+  else:
+    spc(n-1)
+    print("",end=" ")
+
+
+def loop(n):
+  if n == 0:
+    return 0
+  else:
+    loop(n-1)
+    print(n,end=" ")
+
+def patt(n,r=n):
+  if n==0:
+    return 0
+  else:
+    spc(n-1)
+    loop(r-n+1)
+    print()
+    patt(n-1,r)
+
+patt(5)
+
+######### Not working :""")
+
+############ 5
+
+class FinalQ:
+  def prn(self, array, idx):
+    if (idx < len(array)):
+      profit = self.calcProfit(array[idx])
+      print(str(1+idx)+",","Investment:",str(array[idx])+';',"Profit: ",self.calcProfit(array[idx]))
+      self.prn(array, idx + 1)
+            
+  def calcProfit(self, investment):
+    if investment <= 25000:
+      return 0.0
+    elif investment <= 100000:
+      return 45.0 + self.calcProfit(investment-1000)
+    else:
+      return 80.0 + self.calcProfit(investment-1000)
+
+
+array = [25000, 100000, 250000, 350000]
+f = FinalQ()
+f.prn(array, 0)
