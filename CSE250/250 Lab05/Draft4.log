@@ -1,0 +1,21 @@
+Circuit: * C:\Users\hp\Documents\LTspiceXVII\Draft4.asc
+
+WARNING: Less than two connections to node OC.  This node is used by R5.
+Direct Newton iteration for .op point succeeded.
+
+Date: Wed Aug 23 13:33:41 2023
+Total elapsed time: 0.054 seconds.
+
+tnom = 27
+temp = 27
+method = trap
+totiter = 4
+traniter = 0
+tranpoints = 0
+accept = 0
+rejected = 0
+matrix size = 8
+fillins = 3
+solver = Normal
+Matrix Compiler1: 438 bytes object code size
+Matrix Compiler2: 608 bytes object code size
