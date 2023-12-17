@@ -1,0 +1,21 @@
+Circuit: * C:\Users\hp\Documents\LTspiceXVII\251 Lab05\p03InvertingAmp.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Tue Nov 21 12:48:33 2023
+Total elapsed time: 1.228 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 100049
+traniter = 100034
+tranpoints = 50018
+accept = 50018
+rejected = 0
+matrix size = 13
+fillins = 2
+solver = Normal
+Matrix Compiler1: 598 bytes object code size  0.1/0.1/[0.1]
+Matrix Compiler2: 1.14 KB object code size  0.1/0.1/[0.1]
+
