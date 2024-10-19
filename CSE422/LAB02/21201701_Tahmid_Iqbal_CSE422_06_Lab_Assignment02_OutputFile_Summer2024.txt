@@ -1,0 +1,4 @@
+Best Solution:
+100010001
+Best Fitness:
+0

@@ -1,0 +1,4 @@
+Best Solution:
+010101000
+Best Fitness:
+-1
